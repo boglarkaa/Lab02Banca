@@ -1,5 +1,6 @@
 #include "Banca.h"
 #include<iostream>
+#include<string>
 using namespace std;
 
 ContBancar::ContBancar(string numarCont, float suma, string moneda) {
@@ -12,6 +13,10 @@ ContBancar::ContBancar(const ContBancar& c) {
 	this->numarCont = c.numarCont;
 	this->suma = c.suma;
 	this->moneda = c.moneda;
+}
+
+ContBancar::ContBancar() {
+
 }
 
 ContBancar::~ContBancar() {

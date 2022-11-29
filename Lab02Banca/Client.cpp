@@ -1,16 +1,14 @@
 #include "Banca.h"
 #include<iostream>
+#include<string>
 using namespace std;
 
-Client::Client(string nume, string prenume, string adr, unsigned nrCont, ContBancar* conturi) {
+Client::Client(string nume, string prenume, string adr, unsigned nrCont, ContBancar** conturi) {
 	this->nume = nume;
 	this->prenume = prenume;
 	this->adresa = adr;
 	this->nrConturi = nrCont;
 	this->conturi = conturi;
-	for (int i = 0; i < nrConturi; i++) {
-		this->conturi[i] = conturi[i];
-	}
 }
 
 Client::Client(const Client& c) {
@@ -19,6 +17,13 @@ Client::Client(const Client& c) {
 	this->adresa = c.adresa;
 	this->nrConturi = c.nrConturi;
 	this->conturi = c.conturi;
+	for (int i = 0; i < nrConturi; i++) {
+		this->conturi[i] = c.conturi[i];
+	}
+}
+
+Client::Client() {
+
 }
 
 Client::~Client() {
@@ -45,6 +50,10 @@ void Client::setNrConturi(unsigned nrConturi) {
 	this->nrConturi = nrConturi;
 }
 
+void Client::setCont(ContBancar** conturi){
+	this->conturi = conturi;
+}
+
 string Client::getNume() {
 	return this->nume;
 }
@@ -62,8 +71,8 @@ unsigned Client::getNrConturi() {
 }
 
 void Client::afisareDateClient() {
-	cout << "Client: " << this->nume << " " << this->prenume << " " << this->adresa << " " << this->nrConturi << endl;
+	cout << "Client: " << this->nume << " " << this->prenume << " " << this->adresa << " " << this->nrConturi<<" conturi" << endl;
 	for (int i = 0; i < nrConturi; i++) {
-		conturi[i].afisareDateCont();
+		conturi[i]->afisareDateCont();
 	}
 }

@@ -1,19 +1,25 @@
 #include "Banca.h"
 #include<iostream>
+#include<string>
 using namespace std;
 
-Banca::Banca(string codBanca, unsigned nrClienti, Client* clienti) {
+Banca::Banca(string codBanca, unsigned nrClienti, Client** clienti) {
 	this->codBanca = codBanca;
 	this->nrClienti = nrClienti;
 	this->clienti = clienti;
-	for (int i = 0; i < this->nrClienti; i++) {
-		this->clienti[i] = clienti[i];
-	}
 }
 
 Banca::Banca(const Banca& b) {
 	this->codBanca = b.codBanca;
 	this->nrClienti = b.nrClienti;
+	this->clienti = b.clienti;
+	for (int i = 0; i < this->nrClienti; i++) {
+		this->clienti[i] = b.clienti[i];
+	}
+}
+
+Banca::Banca() {
+
 }
 
 Banca::~Banca() {
@@ -41,6 +47,6 @@ unsigned Banca::getNrClienti() {
 void Banca::afisareDateBanca() {
 	cout << "Banca: " << this->codBanca << " " << this->nrClienti << endl;
 	for (int i = 0; i < nrClienti; i++) {
-		clienti[i].afisareDateClient();
+		clienti[i]->afisareDateClient();
 	}
 }

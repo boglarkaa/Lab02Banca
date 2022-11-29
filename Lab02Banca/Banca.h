@@ -3,6 +3,7 @@
 #define _BANCA_H
 using namespace std;
 #include <iostream>
+#include<string>
 
 class Operatiuni {
 public:
@@ -20,7 +21,8 @@ private:
 
 public:
 	ContBancar(string numarCont, float suma, string moneda);
-	ContBancar(const ContBancar&);
+	ContBancar(const ContBancar& c);
+	ContBancar();
 	~ContBancar();
 	void setNumarCont(string numarCont);
 	void setSuma(float suma);
@@ -42,16 +44,18 @@ private:
 	string prenume;
 	string adresa;
 	unsigned nrConturi;
-	ContBancar* conturi;
+	ContBancar** conturi;
 
 public:
-	Client(string nume, string prenume, string adr, unsigned nrCont, ContBancar* conturi);
-	Client(const Client&);
+	Client(string nume, string prenume, string adr, unsigned nrCont, ContBancar** conturi);
+	Client(const Client& c);
+	Client();
 	~Client();
 	void setNume(string nume);
 	void setPrenume(string prenume);
 	void setAdresa(string adresa);
 	void setNrConturi(unsigned nrConturi);
+	void setCont(ContBancar** cont);
 	string getNume();
 	string getPrenume();
 	string getAdresa();
@@ -62,11 +66,12 @@ class Banca {
 private:
 	string codBanca;
 	unsigned nrClienti;
-	Client* clienti;
+	Client** clienti;
 
 public:
-	Banca(string codBanca, unsigned nrClienti, Client* clienti);
-	Banca(const Banca&);
+	Banca(string codBanca, unsigned nrClienti, Client** clienti);
+	Banca(const Banca& b);
+	Banca();
 	~Banca();
 	void setCodBanca(string codBanca);
 	void setNrClienti(unsigned nrClienti);
